@@ -10,6 +10,6 @@ services:
       - /src/node_modules
     environment:
       - NODE_ENV=development
-      - NEXT_PUBLIC_API_URL=http://localhost:3000
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
     # depends_on:
     #   - api
