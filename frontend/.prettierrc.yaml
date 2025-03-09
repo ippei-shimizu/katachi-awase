@@ -15,4 +15,4 @@ vueIndentScriptAndStyle: false
 endOfLine: "lf"
 embeddedLanguageFormatting: "auto"
 singleAttributePerLine: false
-plugins: ["prettier-plugin-organize-imports"]
+plugins: ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"]
