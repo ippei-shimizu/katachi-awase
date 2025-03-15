@@ -1,0 +1,20 @@
+{
+  "name": "katachi-awase",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel -r run dev",
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint",
+    "clean": "pnpm -r run clean",
+    "format": "pnpm -r run format",
+    "test": "pnpm -r run test",
+    "supabase:start": "cd packages/api && pnpm supabase start",
+    "supabase:stop": "cd packages/api && pnpm supabase stop"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}
