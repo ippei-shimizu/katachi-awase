@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "@katachi-awase/frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
+    "eslint": "^9.22.0",
     "eslint-config-next": "15.2.1",
     "eslint-config-prettier": "^10.1.1",
     "prettier": "^3.5.3",

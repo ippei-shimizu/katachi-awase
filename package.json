@@ -9,7 +9,17 @@
     "format": "pnpm -r run format",
     "test": "pnpm -r run test",
     "supabase:start": "cd packages/api && pnpm supabase start",
-    "supabase:stop": "cd packages/api && pnpm supabase stop"
+    "supabase:stop": "cd packages/api && pnpm supabase stop",
+    "prisma:migrate:dev": "cd packages/api && pnpm prisma migrate dev",
+    "prisma:migrate:deploy": "cd packages/api && pnpm prisma migrate deploy",
+    "prisma:studio": "cd packages/api && pnpm prisma studio",
+    "add:api": "pnpm --filter @katachi-awase/api add",
+    "add:frontend": "pnpm --filter @katachi-awase/frontend add",
+    "add:shared": "pnpm --filter @katachi-awase/shared add",
+    "add:all": "pnpm -r add",
+    "add:dev:api": "pnpm --filter @katachi-awase/api add -D",
+    "add:dev:frontend": "pnpm --filter @katachi-awase/frontend add -D",
+    "add:dev:shared": "pnpm --filter @katachi-awase/shared add -D"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
