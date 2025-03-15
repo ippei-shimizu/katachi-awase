@@ -3,7 +3,8 @@ import {
   CreateAdminUserRequest,
   UpdateAdminUserRequest,
 } from "@katachi-awase/shared";
-import { adminUserRepository } from "../repositories/admin-user";
+import { createAdminUserRepository } from "../repositories/admin-user";
+import { Env } from "../db/client";
 
 const toAdminUserResponse = (dbUser: any): AdminUserResponse => ({
   id: dbUser.id,
@@ -13,43 +14,50 @@ const toAdminUserResponse = (dbUser: any): AdminUserResponse => ({
   updatedAt: dbUser.updated_at,
 });
 
-export const adminUserService = {
-  async getAll(): Promise<AdminUserResponse[]> {
-    const users = await adminUserRepository.findAll();
-    return users.map(toAdminUserResponse);
-  },
+export function createAdminUserService(env: Env) {
+  const repository = createAdminUserRepository(env);
 
-  async getById(id: number): Promise<AdminUserResponse | null> {
-    const user = await adminUserRepository.findById(id);
-    return user ? toAdminUserResponse(user) : null;
-  },
+  return {
+    async getAll(): Promise<AdminUserResponse[]> {
+      const users = await repository.findAll();
+      return users.map(toAdminUserResponse);
+    },
 
-  async create(data: CreateAdminUserRequest): Promise<AdminUserResponse> {
-    try {
-      const user = await adminUserRepository.create(data);
-      return toAdminUserResponse(user);
-    } catch (error) {
-      throw new Error("Failed to create an admin user");
-    }
-  },
+    async getById(id: number): Promise<AdminUserResponse | null> {
+      const user = await repository.findById(id);
+      return user ? toAdminUserResponse(user) : null;
+    },
 
-  async update(
-    id: number,
-    data: UpdateAdminUserRequest
-  ): Promise<AdminUserResponse> {
-    try {
-      const user = await adminUserRepository.update(id, data);
-      return toAdminUserResponse(user);
-    } catch (error) {
-      throw new Error("Failed to update an admin user");
-    }
-  },
+    async create(data: CreateAdminUserRequest): Promise<AdminUserResponse> {
+      try {
+        const user = await repository.create(data);
+        return toAdminUserResponse(user);
+      } catch (error) {
+        throw new Error("Failed to create an admin user");
+      }
+    },
 
-  async delete(id: number): Promise<boolean> {
-    try {
-      return await adminUserRepository.delete(id);
-    } catch (error) {
-      throw new Error("Failed to delete an admin user");
-    }
-  },
-};
+    async update(
+      id: number,
+      data: UpdateAdminUserRequest
+    ): Promise<AdminUserResponse> {
+      try {
+        const user = await repository.update(id, data);
+        if (!user) {
+          throw new Error("User not found");
+        }
+        return toAdminUserResponse(user);
+      } catch (error) {
+        throw new Error("Failed to update an admin user");
+      }
+    },
+
+    async delete(id: number): Promise<boolean> {
+      try {
+        return await repository.delete(id);
+      } catch (error) {
+        throw new Error("Failed to delete an admin user");
+      }
+    },
+  };
+}

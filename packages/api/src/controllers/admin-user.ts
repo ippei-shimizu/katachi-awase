@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { adminUserService } from "../services/admin-user";
+import { createAdminUserService } from "../services/admin-user";
 import {
   createAdminUserSchema,
   updateAdminUserSchema,
@@ -17,7 +17,9 @@ export const validateUpdateAdminUser = zValidator(
 
 export const adminUserController = {
   async getAll(c: Context) {
-    const users = await adminUserService.getAll();
+    const service = createAdminUserService(c.env);
+    const users = await service.getAll();
+
     if (!users) {
       return c.json({ message: "Users not found" }, 404);
     }
@@ -25,8 +27,9 @@ export const adminUserController = {
   },
 
   async getById(c: Context) {
+    const service = createAdminUserService(c.env);
     const id = c.req.param("id");
-    const user = await adminUserService.getById(Number(id));
+    const user = await service.getById(Number(id));
 
     if (!user) {
       return c.json({ message: "User not found" }, 404);
@@ -36,10 +39,11 @@ export const adminUserController = {
   },
 
   async create(c: Context) {
+    const service = createAdminUserService(c.env);
     const data = await c.req.json();
 
     try {
-      const user = await adminUserService.create(data);
+      const user = await service.create(data);
       return c.json(user, 201);
     } catch (error) {
       return c.json({ message: "Failed to create an admin user" }, 500);
@@ -47,26 +51,33 @@ export const adminUserController = {
   },
 
   async update(c: Context) {
+    const service = createAdminUserService(c.env);
     const id = c.req.param("id");
     const data = await c.req.json();
 
-    const user = await adminUserService.update(Number(id), data);
-
-    if (!user) {
-      return c.json({ message: "User not found" }, 404);
+    try {
+      const user = await service.update(Number(id), data);
+      if (!user) {
+        return c.json({ message: "User not found" }, 404);
+      }
+      return c.json(user);
+    } catch (error) {
+      return c.json({ message: "Failed to update an admin user" }, 500);
     }
-
-    return c.json(user);
   },
 
   async delete(c: Context) {
+    const service = createAdminUserService(c.env);
     const id = c.req.param("id");
-    const success = await adminUserService.delete(Number(id));
 
-    if (!success) {
+    try {
+      const success = await service.delete(Number(id));
+      if (!success) {
+        return c.json({ message: "User not found or failed to delete" }, 404);
+      }
+      return c.json({ message: "User deleted" });
+    } catch (error) {
       return c.json({ message: "Failed to delete an admin user" }, 500);
     }
-
-    return c.json({ message: "User deleted" });
   },
 };

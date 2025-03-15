@@ -1,54 +1,81 @@
+import { eq } from "drizzle-orm";
+import { adminUsers, AdminUser } from "../db/schema";
 import {
   CreateAdminUserRequest,
   UpdateAdminUserRequest,
 } from "@katachi-awase/shared";
-import { prisma } from "../utils/prisma-client";
 import { hash } from "bcryptjs";
+import { generateRandomPassword } from "../utils/password";
+import { createClient, Env } from "../db/client";
 
-export const adminUserRepository = {
-  async findAll() {
-    return prisma.adminUser.findMany({
-      orderBy: {
-        id: "asc",
-      },
-    });
-  },
+export function createAdminUserRepository(env: Env) {
+  const db = createClient(env);
 
-  async findById(id: number) {
-    return prisma.adminUser.findUnique({
-      where: {
-        id,
-      },
-    });
-  },
+  return {
+    async findAll(): Promise<AdminUser[]> {
+      return db.select().from(adminUsers).orderBy(adminUsers.id);
+    },
 
-  async create(data: CreateAdminUserRequest) {
-    const temporaryPassword = Math.random().toString(36).slice(-8);
-    const encryptedPassword = await hash(temporaryPassword, 10);
+    async findById(id: number): Promise<AdminUser | null> {
+      const results = await db
+        .select()
+        .from(adminUsers)
+        .where(eq(adminUsers.id, id))
+        .limit(1);
 
-    return prisma.adminUser.create({
-      data: {
-        name: data.name,
-        email: data.email,
-        encrypted_password: encryptedPassword,
-      },
-    });
-  },
+      return results[0] || null;
+    },
 
-  async update(id: number, data: UpdateAdminUserRequest) {
-    await prisma.adminUser.update({
-      where: {
-        id,
-      },
-    });
-  },
+    async create(data: CreateAdminUserRequest): Promise<AdminUser> {
+      const temporaryPassword = generateRandomPassword();
+      const encryptedPassword = await hash(temporaryPassword, 10);
 
-  async delete(id: number) {
-    await prisma.adminUser.delete({
-      where: {
-        id,
-      },
-    });
-    return true;
-  },
-};
+      const [newUser] = await db
+        .insert(adminUsers)
+        .values({
+          name: data.name,
+          email: data.email,
+          encryptedPassword: encryptedPassword,
+        })
+        .returning();
+
+      return newUser;
+    },
+
+    async update(
+      id: number,
+      data: UpdateAdminUserRequest
+    ): Promise<AdminUser | null> {
+      try {
+        const [updatedUser] = await db
+          .update(adminUsers)
+          .set({
+            name: data.name,
+            email: data.email,
+            updatedAt: new Date(),
+          })
+          .where(eq(adminUsers.id, id))
+          .returning();
+
+        return updatedUser || null;
+      } catch (error) {
+        console.error("Error updating user:", error);
+        return null;
+      }
+    },
+
+    async delete(id: number): Promise<boolean> {
+      try {
+        const result = await db
+          .delete(adminUsers)
+          .where(eq(adminUsers.id, id))
+          .returning({ id: adminUsers.id });
+
+        return result.length > 0;
+      } catch (error) {
+        console.error("Error deleting user:", error);
+        return false;
+      }
+    },
+  };
+}
