@@ -11,6 +11,6 @@ app.get("/", (c) => {
   return c.text("Hello Hono!!!!!");
 });
 
-app.route("/api", adminUserRoutes);
+app.route("/", adminUserRoutes);
 
 export default app;

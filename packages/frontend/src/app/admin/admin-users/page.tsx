@@ -1,7 +1,11 @@
-export default function Page() {
+import AdminUserList from "@/app/admin/admin-users/_components/AdminUserList";
+import { getAdminUsers } from "@/app/admin/services/adminUsers";
+
+export default async function Page() {
+  const adminUsers = await getAdminUsers();
   return (
     <div>
-      <h1>Admin Users</h1>
+      <AdminUserList adminUsers={adminUsers} />
     </div>
   );
 }

@@ -10,7 +10,9 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\""
   },
   "dependencies": {
+    "@katachi-awase/api": "workspace:*",
     "@katachi-awase/shared": "workspace:*",
+    "hono": "^4.7.4",
     "next": "15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

@@ -81,15 +81,24 @@ importers:
       tsx:
         specifier: ^4.19.3
         version: 4.19.3
+      typescript:
+        specifier: ^5.8.2
+        version: 5.8.2
       wrangler:
         specifier: ^4.0.0
         version: 4.0.0(@cloudflare/workers-types@4.20250313.0)
 
   packages/frontend:
     dependencies:
+      '@katachi-awase/api':
+        specifier: workspace:*
+        version: link:../api
       '@katachi-awase/shared':
         specifier: workspace:*
         version: link:../shared
+      hono:
+        specifier: ^4.7.4
+        version: 4.7.4
       next:
         specifier: 15.2.1
         version: 15.2.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)

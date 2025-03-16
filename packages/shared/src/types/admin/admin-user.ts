@@ -3,8 +3,8 @@ export interface AdminUser {
   name: string;
   email: string;
   encryptedPassword: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface CreateAdminUserRequest {
@@ -21,6 +21,7 @@ export interface AdminUserResponse {
   id: number;
   name: string;
   email: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
+

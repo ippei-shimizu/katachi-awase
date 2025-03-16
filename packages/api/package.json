@@ -1,8 +1,21 @@
 {
   "name": "@katachi-awase/api",
+  "exports": {
+    ".": "./dist/index.js",
+    "./admin/client/*": "./dist/admin/client/*.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
     "supabase": "supabase",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
@@ -32,6 +45,7 @@
     "drizzle-kit": "^0.30.5",
     "eslint": "^9.22.0",
     "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
     "wrangler": "^4.0.0"
   }
 }

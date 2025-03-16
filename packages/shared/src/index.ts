@@ -1,2 +1,2 @@
-export * from "./types/admin-user";
-export * from "./schemas/admin-user";
+export * from "./types/admin/admin-user";
+export * from "./schemas/admin/admin-user";

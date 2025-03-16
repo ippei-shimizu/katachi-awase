@@ -21,7 +21,7 @@ export const adminUserController = {
     const users = await service.getAll();
 
     if (!users) {
-      return c.json({ message: "Users not found" }, 404);
+      return c.json([], 200);
     }
     return c.json(users);
   },
