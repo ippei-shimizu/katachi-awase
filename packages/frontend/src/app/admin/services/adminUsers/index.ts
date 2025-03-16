@@ -51,3 +51,13 @@ export async function updateAdminUser(id: number, data: UpdateAdminUserRequest):
     throw new Error("Failed to update an admin user");
   }
 }
+
+export async function deleteAdminUser(id: number): Promise<boolean> {
+  try {
+    const response = await adminUserClient["admin-users"][":id"].$delete({ param: { id: id.toString() } });
+    return response.status === 200;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to delete an admin user");
+  }
+}

@@ -44,12 +44,6 @@ export default function AdminUserList({ adminUsers }: AdminUserListProps) {
                   <Link href={`/admin/admin-users/${user.id}/edit`} className="mr-4 text-blue-600 hover:text-blue-900">
                     編集
                   </Link>
-                  {/* <button
-                    onClick={() => onDelete(user.id)}
-                    className="text-red-600 hover:text-red-900"
-                  >
-                    削除
-                  </button> */}
                 </td>
               </tr>
             ))}
