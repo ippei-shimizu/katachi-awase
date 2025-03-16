@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import adminUserRoutes from "./routes/admin-user";
+import adminUserRoutes from "./admin/routes/admin-user";
 
 export interface Env {
   DATABASE_URL: string;

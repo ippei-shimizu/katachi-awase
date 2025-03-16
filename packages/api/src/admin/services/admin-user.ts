@@ -4,7 +4,8 @@ import {
   UpdateAdminUserRequest,
 } from "@katachi-awase/shared";
 import { createAdminUserRepository } from "../repositories/admin-user";
-import { Env } from "../db/client";
+import { Env } from "../..";
+
 
 const toAdminUserResponse = (dbUser: any): AdminUserResponse => ({
   id: dbUser.id,

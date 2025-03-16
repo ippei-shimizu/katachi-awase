@@ -1,12 +1,12 @@
 import { eq } from "drizzle-orm";
-import { adminUsers, AdminUser } from "../db/schema";
+import { adminUsers, AdminUser } from "../../db/schema";
 import {
   CreateAdminUserRequest,
   UpdateAdminUserRequest,
 } from "@katachi-awase/shared";
 import { hash } from "bcryptjs";
-import { generateRandomPassword } from "../utils/password";
-import { createClient, Env } from "../db/client";
+import { generateRandomPassword } from "../../utils/password";
+import { createClient, Env } from "../../db/client";
 
 export function createAdminUserRepository(env: Env) {
   const db = createClient(env);
