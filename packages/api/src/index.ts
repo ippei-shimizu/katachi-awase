@@ -9,6 +9,7 @@ export interface Env {
 
 const app = new Hono<{ Bindings: Env }>();
 
+
 app.use("/*", async (c, next) => {
   const origin = c.env.APP_FRONTEND_URL;
 
