@@ -6,13 +6,12 @@ import {
 import { createAdminUserRepository } from "../repositories/admin-user";
 import { Env } from "../..";
 
-
 const toAdminUserResponse = (dbUser: any): AdminUserResponse => ({
   id: dbUser.id,
   name: dbUser.name,
   email: dbUser.email,
-  createdAt: dbUser.created_at,
-  updatedAt: dbUser.updated_at,
+  createdAt: dbUser.createdAt,
+  updatedAt: dbUser.updatedAt,
 });
 
 export function createAdminUserService(env: Env) {

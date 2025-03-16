@@ -36,6 +36,8 @@ export function createAdminUserRepository(env: Env) {
           name: data.name,
           email: data.email,
           encryptedPassword: encryptedPassword,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         })
         .returning();
 

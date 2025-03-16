@@ -1,3 +1,7 @@
+export interface ApiErrorResponse {
+  message: string;
+}
+
 export interface AdminUser {
   id: number;
   name: string;
@@ -10,11 +14,13 @@ export interface AdminUser {
 export interface CreateAdminUserRequest {
   name: string;
   email: string;
+  password: string;
 }
 
 export interface UpdateAdminUserRequest {
   name: string;
   email: string;
+  password?: string;
 }
 
 export interface AdminUserResponse {
@@ -25,3 +31,4 @@ export interface AdminUserResponse {
   updatedAt: string;
 }
 
+export type AdminUserResult = AdminUserResponse | ApiErrorResponse;
