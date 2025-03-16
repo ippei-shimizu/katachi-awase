@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "katachi-awase-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-08",
+  "minify": true,
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "DATABASE_URL": "",
+  },
+}

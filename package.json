@@ -1,0 +1,31 @@
+{
+  "name": "katachi-awase",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel -r run dev",
+    "dev:watch-shared": "pnpm --filter @katachi-awase/shared run build --watch",
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint",
+    "clean": "pnpm -r run clean",
+    "format": "pnpm -r run format",
+    "test": "pnpm -r run test",
+    "supabase:start": "cd packages/api && pnpm supabase start",
+    "supabase:stop": "cd packages/api && pnpm supabase stop",
+    "db:generate": "cd packages/api && pnpm db:generate",
+    "db:push": "cd packages/api && pnpm db:push",
+    "db:studio": "cd packages/api && pnpm db:studio",
+    "add:api": "pnpm --filter @katachi-awase/api add",
+    "add:frontend": "pnpm --filter @katachi-awase/frontend add",
+    "add:shared": "pnpm --filter @katachi-awase/shared add",
+    "add:all": "pnpm -r add",
+    "add:dev:api": "pnpm --filter @katachi-awase/api add -D",
+    "add:dev:frontend": "pnpm --filter @katachi-awase/frontend add -D",
+    "add:dev:shared": "pnpm --filter @katachi-awase/shared add -D"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}
