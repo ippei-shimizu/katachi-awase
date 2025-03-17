@@ -8,4 +8,7 @@
   "vars": {
     "DATABASE_URL": "",
   },
+  "build": {
+    "external": ["@katachi-awase/shared"],
+  },
 }
