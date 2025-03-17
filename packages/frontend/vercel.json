@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd ../.. && pnpm install && pnpm --filter @katachi-awase/shared build && pnpm --filter frontend build",
+  "installCommand": "pnpm install",
+  "outputDirectory": ".next"
+}
