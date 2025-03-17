@@ -58,7 +58,6 @@ export default function AdminUserForm({ mode, userData }: AdminUserFormProps) {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
     setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(schema),

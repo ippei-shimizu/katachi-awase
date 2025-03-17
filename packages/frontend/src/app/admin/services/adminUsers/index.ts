@@ -43,7 +43,8 @@ export async function updateAdminUser(id: number, data: UpdateAdminUserRequest):
   try {
     const response = await adminUserClient["admin-users"][":id"].$put({
       param: { id: id.toString() },
-      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
       json: data,
     });
     return response.json();
