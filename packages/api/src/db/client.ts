@@ -13,6 +13,7 @@ export function createClient(env: Env) {
     prepare: false,
     max: 1,
     idle_timeout: 20,
+    hostname: "ip4",
   });
 
   return drizzle(client, { schema });

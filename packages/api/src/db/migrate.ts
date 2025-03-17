@@ -4,10 +4,8 @@ import postgres from "postgres";
 import { schema } from "./schema";
 import * as dotenv from "dotenv";
 
-// 環境変数を読み込み
 dotenv.config();
 
-// 環境変数ファイルがない場合も対応
 try {
   dotenv.config({ path: "./.dev.vars" });
 } catch (error) {
@@ -28,6 +26,8 @@ async function runMigration() {
   const client = postgres(connectionString, {
     prepare: false,
     max: 1,
+    connect_timeout: 10,
+    hostname: "ip4",
   });
 
   const db = drizzle(client, { schema });
