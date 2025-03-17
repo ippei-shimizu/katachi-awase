@@ -1,13 +1,14 @@
 import { API_BASE_URL } from "@/app/admin/services";
-import { createAdminUserClient } from "@katachi-awase/api/admin/client/admin-user";
 import {
+  AdminUserClient,
   AdminUserResponse,
   AdminUserResult,
+  createAdminUserClient,
   CreateAdminUserRequest,
   UpdateAdminUserRequest,
 } from "@katachi-awase/shared";
 
-export const adminUserClient = createAdminUserClient(API_BASE_URL);
+export const adminUserClient: AdminUserClient = createAdminUserClient(API_BASE_URL);
 
 export async function getAdminUsers(): Promise<AdminUserResponse[]> {
   try {
@@ -42,7 +43,8 @@ export async function updateAdminUser(id: number, data: UpdateAdminUserRequest):
   try {
     const response = await adminUserClient["admin-users"][":id"].$put({
       param: { id: id.toString() },
-      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
       json: data,
     });
     return response.json();

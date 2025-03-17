@@ -58,7 +58,6 @@ export default function AdminUserForm({ mode, userData }: AdminUserFormProps) {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
     setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -82,7 +81,7 @@ export default function AdminUserForm({ mode, userData }: AdminUserFormProps) {
       setIsSubmitting(true);
       setError(null);
 
-      const { passwordConfirmation, ...submitData } = data;
+      const { ...submitData } = data;
 
       if (mode === "edit" && !submitData.password) {
         delete submitData.password;

@@ -21,7 +21,8 @@
     "supabase:stop": "supabase stop",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "db:migrate": "tsx src/db/migrate.ts"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.4.3",
