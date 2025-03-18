@@ -10,6 +10,7 @@ try {
   dotenv.config({ path: "./.dev.vars" });
 } catch (error) {
   console.log("No .dev.vars file found, using environment variables");
+
 }
 
 const connectionString = process.env.DATABASE_URL as string;
