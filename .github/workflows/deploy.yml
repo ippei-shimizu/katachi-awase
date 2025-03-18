@@ -33,15 +33,6 @@ jobs:
           cd packages/shared
           pnpm build
 
-      - name: Generate and run migrations
-        run: |
-          cd packages/api
-          pnpm db:generate
-          pnpm db:migrate
-        env:
-          DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
-          NODE_OPTIONS: "--dns-result-order=ipv4first"
-
       - name: Verify wrangler configuration
         run: |
           cd packages/api
