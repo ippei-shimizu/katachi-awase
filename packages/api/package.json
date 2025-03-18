@@ -20,7 +20,8 @@
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
     "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push",
+    "db:push:local": "dotenv -e .dev.vars -- drizzle-kit push",
+    "db:push:prod": "dotenv -e .prod.vars -- drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:migrate": "tsx src/db/migrate.ts"
   },
@@ -43,6 +44,7 @@
     "@hono/zod-openapi": "^0.19.2",
     "@types/bcrypt": "^5.0.2",
     "@types/bcryptjs": "^3.0.0",
+    "dotenv-cli": "^8.0.0",
     "drizzle-kit": "^0.30.5",
     "eslint": "^9.22.0",
     "tsx": "^4.19.3",
