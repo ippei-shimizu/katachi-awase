@@ -45,6 +45,7 @@ jobs:
           pnpm db:migrate
         env:
           DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+          NODE_OPTIONS: "--dns-result-order=ipv4first"
 
       - name: Apply migrations to Supabase
         run: |
