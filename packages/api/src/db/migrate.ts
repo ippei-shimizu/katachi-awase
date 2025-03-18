@@ -26,14 +26,11 @@ async function runMigration() {
   const client = postgres(connectionString, {
     prepare: false,
     max: 1,
-    connect_timeout: 10,
-    hostname: "ip4",
   });
 
   const db = drizzle(client, { schema });
 
   try {
-    // マイグレーションの実行
     await migrate(db, { migrationsFolder: "./src/db/migrations" });
     console.log("Migration completed successfully!");
   } catch (error) {
