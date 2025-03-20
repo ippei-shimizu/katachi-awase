@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import adminUserRoutes from "./admin/routes/admin-user";
+import authRoutes from "./admin/routes/auth";
 
 export interface Env {
   DATABASE_URL: string;
@@ -8,7 +9,6 @@ export interface Env {
 }
 
 const app = new Hono<{ Bindings: Env }>();
-
 
 app.use("/*", async (c, next) => {
   const origin = c.env.APP_FRONTEND_URL;
@@ -30,5 +30,6 @@ app.get("/", (c) => {
 });
 
 app.route("/", adminUserRoutes);
+app.route("/", authRoutes);
 
 export default app;
