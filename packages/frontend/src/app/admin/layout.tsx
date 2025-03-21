@@ -2,6 +2,7 @@ import AdminLayout from "@/app/admin/_components/AdminLayout";
 import { SidebarProvider } from "@/app/admin/context/SidebarContext";
 import { Metadata } from "next";
 import { Outfit } from "next/font/google";
+import React from "react";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -16,9 +17,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  auth,
 }: Readonly<{
   children: React.ReactNode;
+  auth: React.ReactNode;
 }>) {
+  if (auth === null) {
+    return (
+      <html lang="ja">
+        <body className={`${outfit.variable}`}>{auth}</body>
+      </html>
+    );
+  }
   return (
     <html lang="ja">
       <body className={`${outfit.variable}`}>

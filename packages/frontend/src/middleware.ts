@@ -21,17 +21,32 @@ export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (pathname.startsWith("/admin")) {
-    if (authenticate(req)) {
+    if (!authenticate(req)) {
+      const response = new NextResponse("Unauthorized", {
+        status: 401,
+        headers: {
+          "WWW-Authenticate": 'Basic realm="Access to admin area"',
+        },
+      });
+      return response;
+    }
+
+    if (pathname === "/admin/login") {
+      const session = req.cookies.get("admin_session");
+      if (session) {
+        return NextResponse.redirect(new URL("/admin", req.url));
+      }
       return NextResponse.next();
     }
 
-    const response = new NextResponse("Unauthorized", {
-      status: 401,
-      headers: {
-        "WWW-Authenticate": 'Basic realm="Access to admin area"',
-      },
-    });
-    return response;
+    const session = req.cookies.get("admin_session");
+    if (!session) {
+      const url = new URL("/admin/login", req.url);
+      url.searchParams.set("redirect", pathname);
+      return NextResponse.redirect(url);
+    }
+
+    return NextResponse.next();
   }
 
   return NextResponse.next();
