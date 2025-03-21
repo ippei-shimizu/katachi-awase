@@ -5,7 +5,6 @@ import {
   UpdateAdminUserRequest,
 } from "@katachi-awase/shared";
 import { hash } from "bcryptjs";
-import { generateRandomPassword } from "../../utils/password";
 import { createClient, Env } from "../../db/client";
 
 export function createAdminUserRepository(env: Env) {
@@ -27,7 +26,7 @@ export function createAdminUserRepository(env: Env) {
     },
 
     async create(data: CreateAdminUserRequest): Promise<AdminUser> {
-      const temporaryPassword = generateRandomPassword();
+      const temporaryPassword = data.password;
       const encryptedPassword = await hash(temporaryPassword, 10);
 
       const [newUser] = await db
