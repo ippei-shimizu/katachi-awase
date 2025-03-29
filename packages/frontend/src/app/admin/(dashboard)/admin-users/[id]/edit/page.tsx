@@ -1,6 +1,6 @@
 import AdminUserDeleteButton from "@/app/admin/(dashboard)/admin-users/_components/AdminUserDeleteButton";
 import AdminUserForm from "@/app/admin/(dashboard)/admin-users/_components/AdminUserForm";
-import { getAdminUser } from "@/app/admin/services/admin/adminUsers";
+import { getAdminUser } from "@/app/admin/services/adminUsers";
 
 export const metadata = {
   title: "管理者ユーザー編集 | 管理画面",

@@ -1,6 +1,6 @@
 "use client";
 
-import { createLessonCategory, updateLessonCategory } from "@/app/admin/services/admin/lessonCategories";
+import { createLessonCategory, updateLessonCategory } from "@/app/admin/services/lessonCategories";
 import { LessonCategory, LessonCategoryCreate, LessonCategoryUpdate } from "@api/admin/types/lesson-category";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";

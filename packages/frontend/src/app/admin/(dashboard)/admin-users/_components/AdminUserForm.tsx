@@ -1,6 +1,6 @@
 "use client";
 
-import { createAdminUser, updateAdminUser } from "@/app/admin/services/admin/adminUsers";
+import { createAdminUser, updateAdminUser } from "@/app/admin/services/adminUsers";
 import { AdminUser, AdminUserCreate, AdminUserUpdate } from "@api/admin/types/admin-user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";

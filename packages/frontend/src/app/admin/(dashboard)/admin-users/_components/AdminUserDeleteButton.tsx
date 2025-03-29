@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteAdminUser } from "@/app/admin/services/admin/adminUsers";
+import { deleteAdminUser } from "@/app/admin/services/adminUsers";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

@@ -1,5 +1,5 @@
 import LessonCategoryList from "@/app/admin/(dashboard)/lesson-category/_components/LessonCategoryList";
-import { getLessonCategories } from "@/app/admin/services/admin/lessonCategories";
+import { getLessonCategories } from "@/app/admin/services/lessonCategories";
 
 import { Suspense } from "react";
 
