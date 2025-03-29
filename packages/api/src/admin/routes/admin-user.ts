@@ -11,7 +11,15 @@ export const adminUserRoutes = new Hono<{ Bindings: Env }>()
   // NOTE: GET /admin-users
   .get("/admin-users", async (c) => {
     const db = getDbClient(c);
-    const allAdminUsers = await db.select().from(adminUsers);
+    const allAdminUsers = await db
+      .select({
+        id: adminUsers.id,
+        name: adminUsers.name,
+        email: adminUsers.email,
+        createdAt: adminUsers.createdAt,
+        updatedAt: adminUsers.updatedAt,
+      })
+      .from(adminUsers);
 
     return c.json({
       success: true,
@@ -22,7 +30,13 @@ export const adminUserRoutes = new Hono<{ Bindings: Env }>()
   .get("/admin-users/:id", async (c) => {
     const db = getDbClient(c);
     // prettier-ignore
-    const adminUser = await db.select().from(adminUsers).where(eq(adminUsers.id, Number(c.req.param("id"))));
+    const adminUser = await db.select({
+      id: adminUsers.id,
+      name: adminUsers.name,
+      email: adminUsers.email,
+      createdAt: adminUsers.createdAt,
+      updatedAt: adminUsers.updatedAt,
+    }).from(adminUsers).where(eq(adminUsers.id, Number(c.req.param("id"))));
     if (adminUser === undefined) {
       return c.json(
         {

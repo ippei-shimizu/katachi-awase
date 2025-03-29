@@ -86,7 +86,17 @@ export const authRoutes = new Hono<{ Bindings: Env }>()
     const decodedToken = Buffer.from(sessionToken, "base64").toString("utf-8");
     const { userId } = JSON.parse(decodedToken);
     const db = getDbClient(c);
-    const adminUser = await db.select().from(adminUsers).where(eq(adminUsers.id, userId)).limit(1);
+    const adminUser = await db
+      .select({
+        id: adminUsers.id,
+        name: adminUsers.name,
+        email: adminUsers.email,
+        createdAt: adminUsers.createdAt,
+        updatedAt: adminUsers.updatedAt,
+      })
+      .from(adminUsers)
+      .where(eq(adminUsers.id, userId))
+      .limit(1);
     if (adminUser === undefined || adminUser.length === 0) {
       return c.json(
         {
@@ -99,12 +109,6 @@ export const authRoutes = new Hono<{ Bindings: Env }>()
 
     return c.json({
       success: true,
-      data: {
-        id: adminUser[0].id,
-        email: adminUser[0].email,
-        name: adminUser[0].name,
-        createdAt: adminUser[0].createdAt,
-        updatedAt: adminUser[0].updatedAt,
-      },
+      data: adminUser[0],
     });
   });
