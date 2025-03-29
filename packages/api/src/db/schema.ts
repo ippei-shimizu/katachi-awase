@@ -18,7 +18,6 @@ export const lessonCategories = pgTable("lesson_categories", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-
 export const schema = { adminUsers, lessonCategories };
 
 export type AdminUser = typeof adminUsers.$inferSelect;

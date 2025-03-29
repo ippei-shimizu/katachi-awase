@@ -3,6 +3,7 @@ import { cors } from "hono/cors";
 import { Env } from "./db/client";
 import { adminUserRoutes } from "./admin/routes/admin-user";
 import { authRoutes } from "./admin/routes/admin-auth";
+import { adminLessonCategory } from "./admin/routes/admin-lesson-category";
 
 const app = new Hono<{ Bindings: Env }>()
   .use(
@@ -18,8 +19,10 @@ const app = new Hono<{ Bindings: Env }>()
       credentials: true,
     })
   )
+  // NOTE: admin routes
   .route("/api/admin/", adminUserRoutes)
-  .route("/api/admin/", authRoutes);
+  .route("/api/admin/", authRoutes)
+  .route("/api/admin/", adminLessonCategory);
 
 export default app;
 export type AppType = typeof app;
