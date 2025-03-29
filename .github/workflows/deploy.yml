@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - "packages/api/**"
-      - "packages/shared/**"
 
 jobs:
   deploy:
@@ -18,40 +17,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.5.1"
+          node-version: "18"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 10.6.1
+          version: 8
+          run_install: false
 
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install
 
-      - name: Build shared package
-        run: |
-          cd packages/shared
-          pnpm build
-
-      - name: Verify wrangler configuration
-        run: |
-          cd packages/api
-          if [ -f "wrangler.json" ]; then
-            echo "wrangler.json exists"
-          elif [ -f "wrangler.jsonc" ]; then
-            echo "wrangler.jsonc exists, renaming to wrangler.json"
-            mv wrangler.jsonc wrangler.json
-          else
-            echo "No wrangler configuration found"
-            exit 1
-          fi
-
-      - name: Deploy
+      - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: "packages/api"
+          workingDirectory: packages/api
           command: deploy --minify
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}

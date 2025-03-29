@@ -20,6 +20,10 @@ function authenticate(req: NextRequest) {
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
+  if (pathname === "/admin") {
+    return NextResponse.redirect(new URL("/admin/dashboard", req.url));
+  }
+
   if (pathname.startsWith("/admin")) {
     if (!authenticate(req)) {
       const response = new NextResponse("Unauthorized", {
