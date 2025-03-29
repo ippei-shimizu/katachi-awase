@@ -9,7 +9,7 @@ export default function LessonCategoryDeleteButton({ lessonCategoryId }: { lesso
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const onDelete = async (userId: number) => {
+  const onDelete = async (lessonCategoryId: number) => {
     if (!window.confirm("このレッスンカテゴリーを削除してもよろしいですか？この操作は元に戻せません。")) {
       return;
     }
@@ -27,7 +27,7 @@ export default function LessonCategoryDeleteButton({ lessonCategoryId }: { lesso
       }
     } catch (err) {
       console.error("削除エラー:", err);
-      setError(err instanceof Error ? err.message : "ユーザーの削除に失敗しました");
+      setError(err instanceof Error ? err.message : "レッスンカテゴリーの削除に失敗しました");
     } finally {
       setIsDeleting(false);
     }
