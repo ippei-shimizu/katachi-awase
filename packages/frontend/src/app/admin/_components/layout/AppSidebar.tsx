@@ -28,6 +28,11 @@ const navItems: NavItem[] = [
     name: "Lessons Category",
     path: "/admin/lesson-category",
   },
+  {
+    icon: "/images/admin/icons/shooting-star.svg",
+    name: "Lessons Skill",
+    path: "/admin/lesson-skills",
+  },
 ];
 
 const otherNavItems: NavItem[] = [
