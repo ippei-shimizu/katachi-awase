@@ -3,6 +3,7 @@ import postgres from "postgres";
 
 export interface Env {
   DATABASE_URL: string;
+  APP_FRONTEND_URL: string;
   NODE_ENV: string;
 }
 
