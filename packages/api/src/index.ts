@@ -4,6 +4,7 @@ import { Env } from "./db/client";
 import { adminUserRoutes } from "./admin/routes/admin-user";
 import { authRoutes } from "./admin/routes/admin-auth";
 import { adminLessonCategory } from "./admin/routes/admin-lesson-category";
+import { adminLessonSkills } from "./admin/routes/admin-lesson-skills";
 
 const app = new Hono<{ Bindings: Env }>()
   .use(
@@ -22,7 +23,8 @@ const app = new Hono<{ Bindings: Env }>()
   // NOTE: admin routes
   .route("/api/admin/", adminUserRoutes)
   .route("/api/admin/", authRoutes)
-  .route("/api/admin/", adminLessonCategory);
+  .route("/api/admin/", adminLessonCategory)
+  .route("/api/admin/", adminLessonSkills);
 
 export default app;
 export type AppType = typeof app;
