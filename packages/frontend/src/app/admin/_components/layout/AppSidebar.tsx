@@ -23,6 +23,11 @@ const navItems: NavItem[] = [
     name: "Users",
     path: "/admin/users",
   },
+  {
+    icon: "/images/admin/icons/task.svg",
+    name: "Lessons Category",
+    path: "/admin/lesson-category",
+  },
 ];
 
 const otherNavItems: NavItem[] = [
