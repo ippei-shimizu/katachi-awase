@@ -1,5 +1,6 @@
 import AdminUserList from "@/app/admin/(dashboard)/admin-users/_components/AdminUserList";
 import { getAdminUsers } from "@/app/admin/services/adminUsers";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +12,9 @@ export default async function Page() {
   const adminUsers = await getAdminUsers();
   return (
     <div>
-      <AdminUserList adminUsers={adminUsers.data} />
+      <Suspense fallback={<div className="text-center">Loading...</div>}>
+        <AdminUserList adminUsers={adminUsers.data} />
+      </Suspense>
     </div>
   );
 }
