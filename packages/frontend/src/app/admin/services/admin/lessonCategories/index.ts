@@ -1,6 +1,6 @@
 import { apiClient } from "@/lib/client";
 
-export const getAdminLessonCategories = async () => {
+export const getLessonCategories = async () => {
   const response = await apiClient.api.admin["admin-lesson-categories"].$get({
     headers: {
       "Content-Type": "application/json",

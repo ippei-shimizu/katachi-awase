@@ -1,6 +1,6 @@
-
 import LessonCategoryList from "@/app/admin/(dashboard)/lesson-category/_components/LessonCategoryList";
-import { getAdminLessonCategories } from "@/app/admin/services/admin/lessonCategories";
+import { getLessonCategories } from "@/app/admin/services/admin/lessonCategories";
+
 import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default async function Page() {
-  const adminLessonCategories = await getAdminLessonCategories();
+  const adminLessonCategories = await getLessonCategories();
 
   return (
     <div>
