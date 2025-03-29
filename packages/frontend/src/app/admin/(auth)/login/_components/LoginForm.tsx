@@ -35,7 +35,7 @@ export function LoginForm() {
       const result = await loginAction(data);
 
       if (result.success) {
-        router.push("/admin");
+        router.push("/admin/dashboard");
       } else {
         setError(result.message);
       }
