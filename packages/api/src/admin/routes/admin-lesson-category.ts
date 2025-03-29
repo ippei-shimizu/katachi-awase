@@ -10,7 +10,7 @@ export const adminLessonCategory = new Hono<{ Bindings: Env }>()
   // NOTE: GET /admin-lesson-categories
   .get("/admin-lesson-categories", async (c) => {
     const db = getDbClient(c);
-    const allLessonCategories = await db.select().from(lessonCategories);
+    const allLessonCategories = (await db.select().from(lessonCategories)).sort((a, b) => a.position - b.position);
 
     return c.json({
       success: true,
