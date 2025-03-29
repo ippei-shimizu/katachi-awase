@@ -3,7 +3,7 @@ import { Env } from "../../db/client";
 import { zValidator } from "@hono/zod-validator";
 import { eq } from "drizzle-orm";
 import { adminUsers } from "../../db/schema";
-import { adminUserSchema, createAdminUserSchema, updateAdminUserSchema } from "../schemas/admin-users";
+import { createAdminUserSchema, updateAdminUserSchema } from "../schemas/admin-users";
 import { getDbClient } from "../../helpers/dbClient";
 import bcrypt from "bcryptjs";
 
