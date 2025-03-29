@@ -1,4 +1,4 @@
-import { LessonCategory } from "@api/admin/types/admin-lesson-category";
+import { LessonCategory } from "@api/admin/types/lesson-category";
 import Link from "next/link";
 
 export default function LessonCategoryList({ lessonCategories }: { lessonCategories: LessonCategory[] }) {
@@ -7,7 +7,7 @@ export default function LessonCategoryList({ lessonCategories }: { lessonCategor
       <div className="flex items-center justify-between p-6">
         <h2 className="text-xl font-semibold text-gray-800">レッスンカテゴリー一覧</h2>
         <Link
-          href="/admin/lesson-categories/new"
+          href="/admin/lesson-category/new"
           className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
         >
           新規作成
@@ -40,7 +40,7 @@ export default function LessonCategoryList({ lessonCategories }: { lessonCategor
                 </td>
                 <td className="px-6 py-4 text-right text-sm font-medium whitespace-nowrap">
                   <Link
-                    href={`/admin/lesson-categories/${category.id}/edit`}
+                    href={`/admin/lesson-category/${category.id}/edit`}
                     className="mr-4 text-blue-600 hover:text-blue-900"
                   >
                     編集
