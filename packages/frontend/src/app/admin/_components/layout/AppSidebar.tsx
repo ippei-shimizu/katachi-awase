@@ -16,7 +16,7 @@ const navItems: NavItem[] = [
   {
     icon: "/images/admin/icons/grid.svg",
     name: "Dashboard",
-    path: "/admin",
+    path: "/admin/dashboard",
   },
   {
     icon: "/images/admin/icons/user-circle.svg",

@@ -1,9 +1,9 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { schema } from "./schema";
 
 export interface Env {
   DATABASE_URL: string;
+  NODE_ENV: string;
 }
 
 export function createClient(env: Env) {
@@ -15,5 +15,5 @@ export function createClient(env: Env) {
     idle_timeout: 20,
   });
 
-  return drizzle(client, { schema });
+  return drizzle(client);
 }

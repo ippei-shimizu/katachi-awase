@@ -8,13 +8,6 @@
     "lib": ["ESNext"],
     "types": ["@cloudflare/workers-types/2023-07-01"],
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx",
-    "outDir": "./dist",
-    "declaration": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+    "jsxImportSource": "hono/jsx"
+  }
 }
