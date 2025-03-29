@@ -1,4 +1,5 @@
-import AdminLessonCategoryList from "@/app/admin/(dashboard)/lesson-category/_components/AdmiLessonCategoryList";
+
+import LessonCategoryList from "@/app/admin/(dashboard)/lesson-category/_components/LessonCategoryList";
 import { getAdminLessonCategories } from "@/app/admin/services/admin/adminLessonCategories";
 import { Suspense } from "react";
 
@@ -14,7 +15,7 @@ export default async function Page() {
   return (
     <div>
       <Suspense fallback={<div className="text-center">Loading...</div>}>
-        <AdminLessonCategoryList lessonCategories={adminLessonCategories.data} />
+        <LessonCategoryList lessonCategories={adminLessonCategories.data} />
       </Suspense>
     </div>
   );

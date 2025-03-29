@@ -1,7 +1,7 @@
 import { LessonCategory } from "@api/admin/types/admin-lesson-category";
 import Link from "next/link";
 
-export default function AdminLessonCategoryList({ lessonCategories }: { lessonCategories: LessonCategory[] }) {
+export default function LessonCategoryList({ lessonCategories }: { lessonCategories: LessonCategory[] }) {
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-md">
       <div className="flex items-center justify-between p-6">
