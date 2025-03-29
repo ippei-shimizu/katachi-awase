@@ -9,9 +9,9 @@ const app = new Hono<{ Bindings: Env }>()
     "/*",
     cors({
       origin: process.env.APP_FRONTEND_URL || "http://localhost:3000",
-      allowHeaders: ["Content-Type", "Authorization"],
+      allowHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
       allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      exposeHeaders: ["Content-Type"],
+      exposeHeaders: ['Content-Length', 'X-Kuma-Revision'],
       maxAge: 864_000,
       credentials: true,
     })
