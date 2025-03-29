@@ -1,5 +1,5 @@
 import AdminUserList from "@/app/admin/(dashboard)/admin-users/_components/AdminUserList";
-import { getAdminUsers } from "@/app/admin/services/adminUsers";
+import { getAdminUsers } from "@/app/admin/services/admin/adminUsers";
 
 export const dynamic = "force-dynamic";
 
